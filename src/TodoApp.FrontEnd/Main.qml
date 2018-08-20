@@ -24,13 +24,6 @@ ApplicationWindow {
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
-
-            AddTodoItem {}
-        }
-
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
             
             TodoItemList {}
         }

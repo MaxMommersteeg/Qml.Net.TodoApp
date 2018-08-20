@@ -3,23 +3,36 @@ import QtQuick.Controls 2.1
 import TodoApp 1.0
 
 Page {
-        ListView {
-                model: listViewModel
-                Component.onCompleted: {
-                        var arrTodoItems = ctrl.getTodoItems()
-                        var todoItems = arrTodoItems.split(";")
-                        for (var i = 0; i < todoItems.length; i++)
-                        {
-                                listViewModel.append({"item": todoItems[i]})
+        Column {
+                spacing: 40
+                width: parent.width
+
+                Row {
+                        TextField {
+                                id: txtTitle
+                                placeholderText: "Title"
                         }
                 }
 
-                ListModel {
-                        id: listViewModel
+                Button {
+                        text: "Submit"
+                        onClicked: {
+                                ctrl.addTodoItem(txtTitle.text)
+                        }
                 }
         }
 
-        TodoItemListController {
+        Repeater {
+                id: repeater
+                model: Net.toJsArray(ctrl.todoItems)
+                Column {
+                        Text {
+                                text: "Title: " + modelData.title
+                        }
+                }
+        }
+
+        TodoItemsController {
                 id: ctrl
         }
 }
