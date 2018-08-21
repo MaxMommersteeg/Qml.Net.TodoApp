@@ -23,10 +23,9 @@ namespace TodoApp
 
             serviceCollection.AddDbContext<TodoAppDbContext>(options => options.UseSqlite(connectionString));
             serviceCollection.AddSingleton<ITodoItemRepository, TodoItemRepository>();
+            serviceCollection.AddTransient<TodoItemsController>();''
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
-
-            serviceProvider.GetService<TodoAppDbContext>();
 
             using (var dbContext = serviceProvider.GetService<TodoAppDbContext>())
             {
@@ -40,6 +39,8 @@ namespace TodoApp
                 using (var qmlEngine = new QQmlApplicationEngine())
                 {
                     QQmlApplicationEngine.RegisterType<TodoItemsController>("TodoApp");
+
+                    TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
 
                     qmlEngine.Load("Main.qml");
 
