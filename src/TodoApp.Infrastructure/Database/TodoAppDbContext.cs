@@ -17,6 +17,8 @@ namespace TodoApp.Infrastructure.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             TodoItemMapping.Map(modelBuilder);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -23,14 +23,15 @@ namespace TodoApp
 
             serviceCollection.AddDbContext<TodoAppDbContext>(options => options.UseSqlite(connectionString));
             serviceCollection.AddSingleton<ITodoItemRepository, TodoItemRepository>();
-            serviceCollection.AddTransient<TodoItemsController>();''
+            serviceCollection.AddSingleton<TodoItemsController>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             using (var dbContext = serviceProvider.GetService<TodoAppDbContext>())
             {
-                await dbContext.EnsureSeedData();
+                await dbContext.EnsureSeedData().ConfigureAwait(false);
             }
+
 
             QQuickStyle.SetStyle("Material");
 

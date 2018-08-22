@@ -8,7 +8,7 @@ using System;
 
 namespace TodoApp.Infrastructure.Repositories
 {
-    public class TodoItemRepository : ITodoItemRepository, IDisposable
+    public class TodoItemRepository : ITodoItemRepository
     {
         private readonly TodoAppDbContext _dbContext;
 
@@ -72,11 +72,6 @@ namespace TodoApp.Infrastructure.Repositories
         private Task SaveChanges()
         {
             return _dbContext.SaveChangesAsync();
-        }
-
-        public void Dispose()
-        {
-            _dbContext?.Dispose();
         }
     }
 }
