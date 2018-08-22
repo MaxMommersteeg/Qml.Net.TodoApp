@@ -27,11 +27,11 @@ namespace TodoApp
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
+            // Seed database.
             using (var dbContext = serviceProvider.GetService<TodoAppDbContext>())
             {
                 await dbContext.EnsureSeedData().ConfigureAwait(false);
             }
-
 
             QQuickStyle.SetStyle("Material");
 
