@@ -10,16 +10,13 @@ Page {
         width: parent.width
 
         ColumnLayout {
-                id: mainLayout
                 anchors.fill: parent
                 anchors.margins: 8
 
                 Pane {
-                        id: rowBox
                         Layout.fillWidth: true
 
                         RowLayout {
-                                id: rowLayout
                                 anchors.fill: parent
                                 TextField {
                                         id: txtTitle
@@ -34,13 +31,11 @@ Page {
                                                 ctrl.addTodoItem(txtTitle.text)
                                                 txtTitle.text = null
                                         }
-                                }       
+                                }
                         }
                 }
 
-                Divider {
-                
-                }
+                Divider { }
 
                 Text {
                         text: "Todo items"
@@ -58,7 +53,6 @@ Page {
                                         spacing: 6
 
                                         Repeater {
-                                                id: repeater
                                                 model: Net.toJsArray(ctrl.todoItems)
                                                 Component.onCompleted : {
                                                         ctrl.initialize()
@@ -70,8 +64,20 @@ Page {
 
                                                         Material.elevation: 6
 
-                                                        Text {
-                                                                text: modelData.title
+                                                        RowLayout {
+                                                                anchors.fill: parent
+                                                                Text {
+                                                                        text: modelData.title
+                                                                }
+
+                                                                Button {
+                                                                        text: "Done"
+                                                                        highlighted: true
+                                                                        Material.background: Material.Green
+                                                                        onClicked: {
+                                                                                ctrl.markAsDone(modelData.id)
+                                                                        }
+                                                                }
                                                         }
                                                 }
                                         }

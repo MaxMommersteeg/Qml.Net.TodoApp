@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using TodoApp.Core.Entities;
 using System;
+using System.Linq;
 
 namespace TodoApp.Infrastructure.Repositories
 {
@@ -19,7 +20,10 @@ namespace TodoApp.Infrastructure.Repositories
 
         public Task<List<TodoItem>> GetAll()
         {
-            return _dbContext.TodoItems.ToListAsync();
+            return _dbContext.TodoItems
+                .Where(x => x.CompletedAt == null)
+                .OrderBy(x => x.CreatedAt)
+                .ToListAsync();
         }
 
         public Task<TodoItem> Get(int todoItemId)
