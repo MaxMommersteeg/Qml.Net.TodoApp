@@ -331,3 +331,6 @@ ASALocalRun/
 
 # Sqlite databases
 *.db
+
+# QML
+*.qmlc
