@@ -21,17 +21,15 @@ namespace TodoApp
             var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "todoApp.db" };
             var connectionString = connectionStringBuilder.ToString();
 
-            serviceCollection.AddDbContext<TodoAppDbContext>(options => options.UseSqlite(connectionString));
+            serviceCollection.AddDbContext<TodoAppDbContext>(options => options.UseSqlite(connectionString), ServiceLifetime.Singleton);
             serviceCollection.AddSingleton<ITodoItemRepository, TodoItemRepository>();
             serviceCollection.AddSingleton<TodoItemsController>();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            // Seed database.
-            using (var dbContext = serviceProvider.GetService<TodoAppDbContext>())
-            {
-                await dbContext.EnsureSeedData().ConfigureAwait(false);
-            }
+            // Seed database. Do NOT dispose dbContext, that would destroy our only Singleton instance.
+            var dbContext = serviceProvider.GetService<TodoAppDbContext>();
+            await dbContext.EnsureSeedData().ConfigureAwait(false);
 
             QQuickStyle.SetStyle("Material");
 

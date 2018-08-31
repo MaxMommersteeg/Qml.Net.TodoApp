@@ -16,16 +16,19 @@ ApplicationWindow {
         Material.primary: '#1E88E5'
 
         GridLayout {
-        anchors.fill: parent
-        anchors.margins: 20
-        rowSpacing: 20
-        columnSpacing: 20
-        flow:  width > height ? GridLayout.LeftToRight : GridLayout.TopToBottom
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+                anchors.fill: parent
+                anchors.margins: 20
+                rowSpacing: 20
+                columnSpacing: 20
+                flow:  width > height ? GridLayout.LeftToRight : GridLayout.TopToBottom
+                
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    border.width: 5
             
-            TodoItemList {}
-        }
+                    TodoItemList {}
+                }
     }
 }

@@ -8,9 +8,11 @@ namespace TodoApp.Infrastructure.Database.Mapping
         internal static void Map(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TodoItem>().HasKey(x => x.Id);
+            modelBuilder.Entity<TodoItem>().Property(x => x.Id).IsRequired();
             modelBuilder.Entity<TodoItem>().Property(x => x.Id).ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<TodoItem>().Property(x => x.CreatedAt).HasDefaultValueSql("getutcdate()");
+            modelBuilder.Entity<TodoItem>().Property(x => x.Title).IsRequired();
+            modelBuilder.Entity<TodoItem>().Property(x => x.CreatedAt).IsRequired();
         }
     }
 }

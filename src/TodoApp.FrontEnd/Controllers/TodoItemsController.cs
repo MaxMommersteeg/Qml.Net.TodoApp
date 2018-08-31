@@ -19,6 +19,11 @@ namespace TodoApp.Controllers
             _todoItemRepository = todoItemRepository;
         }
 
+        public Task Initialize()
+        {
+            return UpdateTodoItems();
+        }
+
         [NotifySignal]
         public IList<TodoItemModel> TodoItems
         {

@@ -6,7 +6,7 @@ namespace TodoApp.FrontEnd.Extensions
 {
     internal static class TodoItemMapper
     {
-        internal static List<FrontEndModel.TodoItemModel> ToModel(this List<CoreEntities.TodoItem> todoItemEntities)
+        internal static IList<FrontEndModel.TodoItemModel> ToModel(this IList<CoreEntities.TodoItem> todoItemEntities)
         {
             var result = new List<FrontEndModel.TodoItemModel>();
             foreach (var todoItemEntity in todoItemEntities)

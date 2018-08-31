@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TodoApp.Core.Entities;
 
@@ -30,6 +31,11 @@ namespace TodoApp.Infrastructure.Database.Seed
 
         public async static Task EnsureSeedData(this TodoAppDbContext dbContext)
         {
+            if (dbContext.TodoItems.Any())
+            {
+                return;
+            }
+
             await dbContext.AddRangeAsync(_todoItems)
                 .ConfigureAwait(false);
 

@@ -29,6 +29,8 @@ namespace TodoApp.Infrastructure.Repositories
 
         public async Task Add(TodoItem todoItem)
         {
+            todoItem.CreatedAt = DateTime.UtcNow;
+
             await _dbContext.AddAsync(todoItem)
                 .ConfigureAwait(false);
 
