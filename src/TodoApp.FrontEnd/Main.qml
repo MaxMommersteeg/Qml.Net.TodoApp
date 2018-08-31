@@ -4,7 +4,6 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.1
 
 import "Pages"
-import "Components"
 
 ApplicationWindow {
         width: 350
