@@ -5,6 +5,7 @@ using Qml.Net;
 using System.Threading.Tasks;
 using TodoApp.Controllers;
 using TodoApp.Core.Interfaces;
+using TodoApp.FrontEnd;
 using TodoApp.Infrastructure.Database;
 using TodoApp.Infrastructure.Database.Seed;
 using TodoApp.Infrastructure.Repositories;
@@ -21,9 +22,8 @@ namespace TodoApp
             var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "todoApp.db" };
             var connectionString = connectionStringBuilder.ToString();
 
-            serviceCollection.AddDbContext<TodoAppDbContext>(options => options.UseSqlite(connectionString), ServiceLifetime.Singleton);
-            serviceCollection.AddSingleton<ITodoItemRepository, TodoItemRepository>();
-            serviceCollection.AddSingleton<TodoItemsController>();
+            serviceCollection.ConfigureServices();
+            serviceCollection.ConfigureDatabase(connectionString);
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
