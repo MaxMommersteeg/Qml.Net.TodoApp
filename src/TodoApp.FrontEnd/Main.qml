@@ -27,7 +27,7 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    border.width: 5
+                    border.width: 1
             
                     TodoItemList {}
                 }

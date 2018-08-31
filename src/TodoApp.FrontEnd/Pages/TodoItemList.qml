@@ -68,6 +68,7 @@ Page {
                                                                 anchors.fill: parent
                                                                 Text {
                                                                         text: modelData.title
+                                                                        Layout.fillWidth: true
                                                                 }
 
                                                                 Button {
