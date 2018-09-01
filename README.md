@@ -1,5 +1,5 @@
 # Qml.Net.TodoApp
-A simple todo app written using Qml.Net
+A simple todo app written using [Qml.Net](https://github.com/pauldotknopf/Qml.Net).
 
 ## TodoApp.FrontEnd
 Project that provides a user interface. Containing controllers and views (written in QML).
