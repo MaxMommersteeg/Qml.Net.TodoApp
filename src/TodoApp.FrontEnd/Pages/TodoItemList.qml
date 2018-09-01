@@ -28,8 +28,11 @@ Page {
                                         highlighted: true
                                         Material.background: Material.Teal
                                         onClicked: {
-                                                ctrl.addTodoItem(txtTitle.text)
-                                                txtTitle.text = null
+                                                if (txtTitle.text !== "")
+                                                {
+                                                        ctrl.addTodoItem(txtTitle.text)
+                                                        txtTitle.text = null
+                                                }
                                         }
                                 }
                         }
