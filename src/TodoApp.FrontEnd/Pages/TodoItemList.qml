@@ -107,7 +107,7 @@ Page {
                         }
                 }
         }
- 
+
         TodoItemsController {
                 id: ctrl
         }

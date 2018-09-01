@@ -10,6 +10,8 @@ Button {
             hoverEnabled: true
             anchors.fill: parent
             cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
-            onClicked: materialButton.clicked()
+            onClicked: {
+                materialButton.clicked()
+            }
         }
 }

@@ -29,7 +29,7 @@ namespace TodoApp.Controllers
         public IList<TodoItemModel> TodoItems
         {
             get { return _todoItems; }
-            private set { _todoItems = value; }
+            private set => _todoItems = value;
         }
 
         public async Task AddTodoItem(string title)
