@@ -57,7 +57,6 @@ Page {
                                         spacing: 6
 
                                         Repeater {
-                                                id: repeater
                                                 model: Net.toJsArray(ctrl.todoItems)
                                                 Component.onCompleted : {
                                                         ctrl.initialize()
@@ -103,11 +102,7 @@ Page {
                                                                         highlighted: true
                                                                         Material.background: Material.Green
                                                                         onClicked: {
-                                                                                console.log(ctrl)
-                                                                                console.log(repeater)
-                                                                                console.log(repeater.modelData)
-                                                                                console.log(repeater.modelData.id)
-                                                                                ctrl.markAsDone(repeater.modelData.id)
+                                                                                ctrl.markAsDone(modelData.id)
                                                                         }
                                                                 }
                                                         }

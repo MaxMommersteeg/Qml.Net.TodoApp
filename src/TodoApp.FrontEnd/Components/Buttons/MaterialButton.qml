@@ -9,8 +9,7 @@ Button {
         MouseArea {
             hoverEnabled: true
             anchors.fill: parent
-            onEntered: { cursorShape = Qt.PointingHandCursor }
-            onExited: { cursorShape = Qt.ArrowCursor }
+            cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
             onClicked: materialButton.clicked()
         }
 }
