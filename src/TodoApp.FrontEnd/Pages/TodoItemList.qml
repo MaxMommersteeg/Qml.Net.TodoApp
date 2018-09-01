@@ -1,6 +1,6 @@
-﻿import QtQuick 2.6
-import QtQuick.Controls 2.1
-import QtQuick.Controls.Material 2.1
+﻿import QtQuick 2.11
+import QtQuick.Controls 2.4
+import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.3
 import TodoApp 1.0
 
@@ -40,11 +40,6 @@ Page {
                 }
 
                 Divider { }
-
-                Text {
-                        text: "Todo items"
-                        Layout.fillWidth: true
-                }
 
                 Pane {
                         Layout.fillWidth: true
