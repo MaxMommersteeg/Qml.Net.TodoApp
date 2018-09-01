@@ -50,15 +50,6 @@ namespace TodoApp.Controllers
                 .ConfigureAwait(false);
         }
 
-        public async Task DeleteTodoItem(int todoItemId)
-        {
-            await _todoItemService.DeleteTodoItem(todoItemId)
-                .ConfigureAwait(false);
-
-            await UpdateTodoItems()
-                .ConfigureAwait(false);
-        }
-
         public string ToLocalDateTimeString(DateTime dateTime)
         {
             return dateTime.Humanize(utcDate: true);
