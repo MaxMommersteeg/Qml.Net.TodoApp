@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.3
 import TodoApp 1.0
 
 import "../Components"
+import "../Components/Buttons"
 
 Page {
         width: parent.width
@@ -23,10 +24,10 @@ Page {
                                         placeholderText: "Title"
                                         Layout.fillWidth: true
                                 }
-                                Button {
+                                MaterialButton {
                                         text: "Submit"
                                         highlighted: true
-                                        Material.background: Material.Teal
+                                        Material.background: Material.Green
                                         onClicked: {
                                                 if (txtTitle.text !== "")
                                                 {
@@ -62,10 +63,17 @@ Page {
                                                 }
 
                                                 Pane {
+                                                        id: todoItemCard
                                                         width: parent.width
                                                         height: 60
-
-                                                        Material.elevation: 6
+                                                        Material.elevation: 1
+                                                        
+                                                        MouseArea {
+                                                                hoverEnabled: true
+                                                                anchors.fill: parent
+                                                                onEntered: { todoItemCard.Material.elevation = 6 }
+                                                                onExited: { todoItemCard.Material.elevation = 1 }
+                                                        }
 
                                                         RowLayout {
                                                                 anchors.fill: parent
@@ -79,7 +87,7 @@ Page {
                                                                         Layout.fillWidth: true
                                                                 }
 
-                                                                Button {
+                                                                MaterialButton {
                                                                         text: "Done"
                                                                         highlighted: true
                                                                         Material.background: Material.Green
@@ -94,7 +102,7 @@ Page {
                         }
                 }
         }
-        
+ 
         TodoItemsController {
                 id: ctrl
         }
