@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using TodoApp.Core.Interfaces;
 using TodoApp.FrontEnd.Model;
 using TodoApp.FrontEnd.Extensions;
+using System;
 
 namespace TodoApp.Controllers
 {
@@ -55,6 +56,12 @@ namespace TodoApp.Controllers
 
             await UpdateTodoItems()
                 .ConfigureAwait(false);
+        }
+
+        public string ToLocalDateTimeString(DateTime dateTime)
+        {
+            var local = dateTime.ToLocalTime();
+            return local.ToString();
         }
 
         private async Task UpdateTodoItems()

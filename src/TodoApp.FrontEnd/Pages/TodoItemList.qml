@@ -71,6 +71,11 @@ Page {
                                                                         Layout.fillWidth: true
                                                                 }
 
+                                                                Text {
+                                                                        text: ctrl.toLocalDateTimeString(modelData.createdAt)
+                                                                        Layout.fillWidth: true
+                                                                }
+
                                                                 Button {
                                                                         text: "Done"
                                                                         highlighted: true

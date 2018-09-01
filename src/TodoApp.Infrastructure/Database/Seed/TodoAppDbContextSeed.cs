@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TodoApp.Core.Entities;
+using TodoApp.Core.Data;
 
 namespace TodoApp.Infrastructure.Database.Seed
 {
@@ -19,8 +19,7 @@ namespace TodoApp.Infrastructure.Database.Seed
             new TodoItem
             {
                 Title = "Setup a meeting with stakeholders",
-                CreatedAt = new DateTime(2018, 7, 12, 10, 0, 0, DateTimeKind.Utc),
-                CompletedAt = new DateTime(2018, 7, 15, 18, 0, 0, DateTimeKind.Utc)
+                CreatedAt = new DateTime(2018, 7, 12, 10, 0, 0, DateTimeKind.Utc)
             },
             new TodoItem
             {

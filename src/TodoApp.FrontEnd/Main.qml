@@ -6,7 +6,7 @@ import QtQuick.Controls.Material 2.1
 import "Pages"
 
 ApplicationWindow {
-        width: 350
+        width: 800
         height: 600
         visible: true
         title: "Todo App"
@@ -26,8 +26,6 @@ ApplicationWindow {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-
-                    border.width: 1
             
                     TodoItemList {}
                 }

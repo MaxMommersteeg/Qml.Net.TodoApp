@@ -1,5 +1,4 @@
 ﻿using System;
-using TodoApp.Core.Entities;
 
 namespace TodoApp.Core.Data
 {

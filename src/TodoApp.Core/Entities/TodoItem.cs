@@ -8,7 +8,7 @@ namespace TodoApp.Core.Entities
 
         public string Title { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; }
 
         public DateTime? CompletedAt { get; set; }
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TodoApp.Core.Entities;
+using TodoApp.Core.Data;
 
 namespace TodoApp.Infrastructure.Database.Mapping
 {
