@@ -3,9 +3,10 @@ using TodoApp.Core.Interfaces;
 using TodoApp.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using TodoApp.Core.Entities;
+using TodoApp.Core.Data;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace TodoApp.Infrastructure.Repositories
 {
@@ -18,15 +19,19 @@ namespace TodoApp.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public Task<List<TodoItem>> GetAll()
+        public Task<List<TodoItem>> Get()
+        {
+            return _dbContext.TodoItems.ToListAsync();
+        }
+
+        public Task<List<TodoItem>> Get(Expression<Func<TodoItem, bool>> predicate)
         {
             return _dbContext.TodoItems
-                .Where(x => x.CompletedAt == null)
-                .OrderBy(x => x.CreatedAt)
+                .Where(predicate)
                 .ToListAsync();
         }
 
-        public Task<TodoItem> Get(int todoItemId)
+        public Task<TodoItem> GetById(int todoItemId)
         {
             return _dbContext.FindAsync<TodoItem>(todoItemId);
         }
@@ -44,7 +49,7 @@ namespace TodoApp.Infrastructure.Repositories
 
         public async Task Update(TodoItem todoItem)
         {
-            var entityToUpdate = await Get(todoItem.Id)
+            var entityToUpdate = await GetById(todoItem.Id)
                 .ConfigureAwait(false);
             if (entityToUpdate == null)
             {
@@ -62,7 +67,7 @@ namespace TodoApp.Infrastructure.Repositories
 
         public async Task Delete(int todoItemId)
         {
-            var entityToDelete = await Get(todoItemId)
+            var entityToDelete = await GetById(todoItemId)
                 .ConfigureAwait(false);
             if (entityToDelete == null)
             {

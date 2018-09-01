@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using TodoApp.Core.Entities;
+using TodoApp.Core.Data;
 using TodoApp.Infrastructure.Database.Mapping;
 
 namespace TodoApp.Infrastructure.Database

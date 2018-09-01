@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.Data.Common;
 using TodoApp.Controllers;
 using TodoApp.Core.Interfaces;
+using TodoApp.Core.Services;
 using TodoApp.Infrastructure.Database;
 using TodoApp.Infrastructure.Repositories;
 
@@ -13,6 +13,7 @@ namespace TodoApp.FrontEnd
         internal static void ConfigureServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton<ITodoItemRepository, TodoItemRepository>();
+            serviceCollection.AddSingleton<ITodoItemService, TodoItemService>();
             serviceCollection.AddSingleton<TodoItemsController>();
         }
 

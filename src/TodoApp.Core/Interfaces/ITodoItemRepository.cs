@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
-using TodoApp.Core.Entities;
+using TodoApp.Core.Data;
 
 namespace TodoApp.Core.Interfaces
 {
     public interface ITodoItemRepository
     {
-        Task<List<TodoItem>> GetAll();
+        Task<List<TodoItem>> Get();
 
-        Task<TodoItem> Get(int todoItemId);
+        Task<List<TodoItem>> Get(Expression<Func<TodoItem, bool>> predicate);
+
+        Task<TodoItem> GetById(int todoItemId);
 
         Task Add(TodoItem todoItem);
 

@@ -4,19 +4,18 @@ using System.Threading.Tasks;
 using TodoApp.Core.Interfaces;
 using TodoApp.FrontEnd.Model;
 using TodoApp.FrontEnd.Extensions;
-using System;
 
 namespace TodoApp.Controllers
 {
     public class TodoItemsController
     {
-        private readonly ITodoItemRepository _todoItemRepository;
+        private readonly ITodoItemService _todoItemService;
 
         private IList<TodoItemModel> _todoItems = new List<TodoItemModel>();
 
-        public TodoItemsController(ITodoItemRepository todoItemRepository)
+        public TodoItemsController(ITodoItemService todoItemService)
         {
-            _todoItemRepository = todoItemRepository;
+            _todoItemService = todoItemService;
         }
 
         public Task Initialize()
@@ -33,11 +32,8 @@ namespace TodoApp.Controllers
 
         public async Task AddTodoItem(string title)
         {
-            await _todoItemRepository.Add(new Core.Entities.TodoItem
-            {
-                Title = title,
-            })
-            .ConfigureAwait(false);
+            await _todoItemService.AddTodoItem(title)
+                .ConfigureAwait(false);
 
             await UpdateTodoItems()
                 .ConfigureAwait(false);
@@ -45,16 +41,7 @@ namespace TodoApp.Controllers
 
         public async Task MarkAsDone(int todoItemId)
         {
-            var todoItem = await _todoItemRepository.Get(todoItemId)
-                .ConfigureAwait(false);
-            if (todoItem == null)
-            {
-                return;
-            }
-
-            todoItem.CompletedAt = DateTime.UtcNow;
-
-            await _todoItemRepository.Update(todoItem)
+            await _todoItemService.MarkAsDone(todoItemId)
                 .ConfigureAwait(false);
 
             await UpdateTodoItems()
@@ -63,7 +50,7 @@ namespace TodoApp.Controllers
 
         public async Task DeleteTodoItem(int todoItemId)
         {
-            await _todoItemRepository.Delete(todoItemId)
+            await _todoItemService.DeleteTodoItem(todoItemId)
                 .ConfigureAwait(false);
 
             await UpdateTodoItems()
@@ -72,7 +59,7 @@ namespace TodoApp.Controllers
 
         private async Task UpdateTodoItems()
         {
-            _todoItems = (await _todoItemRepository.GetAll().ConfigureAwait(false)).ToModel();
+            _todoItems = (await _todoItemService.GetOpenTodoItems().ConfigureAwait(false)).ToModel();
             this.ActivateSignal("todoItemsChanged");
         }
     }
