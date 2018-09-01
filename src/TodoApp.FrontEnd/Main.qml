@@ -18,7 +18,7 @@ ApplicationWindow {
 
         GridLayout {
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: 0
                 rowSpacing: 25
                 columnSpacing: 20
                 flow:  width > height ? GridLayout.LeftToRight : GridLayout.TopToBottom

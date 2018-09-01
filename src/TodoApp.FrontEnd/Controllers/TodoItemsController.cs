@@ -5,6 +5,7 @@ using TodoApp.Core.Interfaces;
 using TodoApp.FrontEnd.Model;
 using TodoApp.FrontEnd.Extensions;
 using System;
+using Humanizer;
 
 namespace TodoApp.Controllers
 {
@@ -60,8 +61,7 @@ namespace TodoApp.Controllers
 
         public string ToLocalDateTimeString(DateTime dateTime)
         {
-            var local = dateTime.ToLocalTime();
-            return local.ToString();
+            return dateTime.Humanize(utcDate: true);
         }
 
         private async Task UpdateTodoItems()

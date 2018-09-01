@@ -57,6 +57,7 @@ Page {
                                         spacing: 6
 
                                         Repeater {
+                                                id: repeater
                                                 model: Net.toJsArray(ctrl.todoItems)
                                                 Component.onCompleted : {
                                                         ctrl.initialize()
@@ -71,28 +72,42 @@ Page {
                                                         MouseArea {
                                                                 hoverEnabled: true
                                                                 anchors.fill: parent
-                                                                onEntered: { todoItemCard.Material.elevation = 6 }
+                                                                onEntered: { todoItemCard.Material.elevation = 3 }
                                                                 onExited: { todoItemCard.Material.elevation = 1 }
                                                         }
 
                                                         RowLayout {
                                                                 anchors.fill: parent
-                                                                Text {
-                                                                        text: modelData.title
-                                                                        Layout.fillWidth: true
-                                                                }
 
-                                                                Text {
-                                                                        text: ctrl.toLocalDateTimeString(modelData.createdAt)
-                                                                        Layout.fillWidth: true
+                                                                ColumnLayout {
+
+                                                                        Text {
+                                                                                text: ctrl.toLocalDateTimeString(modelData.createdAt)
+                                                                                Layout.alignment: Qt.AlignLeft
+                                                                                font.pointSize: 8
+                                                                                color: '#9e9e9e'
+                                                                        }
+
+                                                                        Text {
+                                                                                text: modelData.title
+                                                                                Layout.alignment: Qt.AlignLeft
+                                                                                font.pointSize: 14
+                                                                                font.weight: Font.Bold
+                                                                                color: '#777777'
+                                                                        }
                                                                 }
 
                                                                 MaterialButton {
+                                                                        Layout.alignment: Qt.AlignRight
                                                                         text: "Done"
                                                                         highlighted: true
                                                                         Material.background: Material.Green
                                                                         onClicked: {
-                                                                                ctrl.markAsDone(modelData.id)
+                                                                                console.log(ctrl)
+                                                                                console.log(repeater)
+                                                                                console.log(repeater.modelData)
+                                                                                console.log(repeater.modelData.id)
+                                                                                ctrl.markAsDone(repeater.modelData.id)
                                                                         }
                                                                 }
                                                         }
