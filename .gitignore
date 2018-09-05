@@ -334,6 +334,3 @@ ASALocalRun/
 
 # QML
 *.qmlc
-
-# Visual Studio Code
-*.vscode
