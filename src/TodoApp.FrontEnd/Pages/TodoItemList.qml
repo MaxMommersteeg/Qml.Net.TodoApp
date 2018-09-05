@@ -18,22 +18,32 @@ Page {
                         Layout.fillWidth: true
 
                         RowLayout {
+                                id: submitBox
                                 anchors.fill: parent
+
                                 TextField {
                                         id: txtTitle
                                         placeholderText: "Title"
                                         Layout.fillWidth: true
+                                        Keys.onReturnPressed: {
+                                                submitBox.submitTodoItem()
+                                        }
                                 }
+
                                 MaterialButton {
                                         text: "Submit"
                                         highlighted: true
                                         Material.background: Material.Green
                                         onClicked: {
-                                                if (txtTitle.text !== "")
-                                                {
-                                                        ctrl.addTodoItem(txtTitle.text)
-                                                        txtTitle.text = null
-                                                }
+                                                submitBox.submitTodoItem()
+                                        }
+                                }
+
+                                function submitTodoItem() {
+                                        if (txtTitle.text !== "")
+                                        {
+                                                ctrl.addTodoItem(txtTitle.text)
+                                                txtTitle.text = null
                                         }
                                 }
                         }
