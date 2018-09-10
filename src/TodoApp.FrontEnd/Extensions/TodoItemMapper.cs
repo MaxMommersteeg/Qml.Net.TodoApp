@@ -14,6 +14,7 @@ namespace TodoApp.FrontEnd.Extensions
                 result.Add(new FrontEndModel.TodoItemModel(
                     todoItemEntity.Id,
                     todoItemEntity.Title,
+                    todoItemEntity.Description,
                     todoItemEntity.CreatedAt,
                     todoItemEntity.CompletedAt));
             }
