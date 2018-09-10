@@ -15,38 +15,50 @@ Page {
                 anchors.margins: 8
 
                 Pane {
+                        ColumnLayout {
+                        id: submitBox
                         Layout.fillWidth: true
 
                         RowLayout {
-                                id: submitBox
-                                anchors.fill: parent
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignLeft
 
                                 TextField {
                                         id: txtTitle
                                         placeholderText: "Title"
                                         Layout.fillWidth: true
-                                        Keys.onReturnPressed: {
-                                                submitBox.submitTodoItem()
-                                        }
+                                        Keys.onReturnPressed: submitBox.submitTodoItem()
+                                }
+                        }
+
+                        RowLayout {
+                                Layout.fillWidth: true
+                                Layout.alignment: Qt.AlignLeft
+
+                                TextArea {
+                                        id: txtDescription
+                                        placeholderText: "Description"
+                                        Layout.fillWidth: true
+                                        Keys.onReturnPressed: submitBox.submitTodoItem()
                                 }
 
                                 MaterialButton {
                                         text: "Submit"
                                         highlighted: true
                                         Material.background: Material.Green
-                                        onClicked: {
-                                                submitBox.submitTodoItem()
-                                        }
-                                }
-
-                                function submitTodoItem() {
-                                        if (txtTitle.text !== "")
-                                        {
-                                                ctrl.addTodoItem(txtTitle.text)
-                                                txtTitle.text = null
-                                        }
+                                        onClicked: submitBox.submitTodoItem()
                                 }
                         }
+
+                        function submitTodoItem() {
+                                if (txtTitle.text !== "")
+                                {
+                                        ctrl.addTodoItem(txtTitle.text, txtDescription.text)
+                                        txtTitle.text = null
+                                        txtDescription.text = null
+                                }
+                        }
+                }
                 }
 
                 Divider { }
@@ -62,10 +74,8 @@ Page {
                                         spacing: 6
 
                                         Repeater {
-                                                model: Net.toListModel(ctrl.todoItems)
-                                                Component.onCompleted : {
-                                                        ctrl.initialize()
-                                                }
+                                                model: Net.toListModel(ctrl.openTodoItems)
+                                                Component.onCompleted: ctrl.initialize()
 
                                                 Pane {
                                                         id: todoItemCard
@@ -77,8 +87,8 @@ Page {
                                                         MouseArea {
                                                                 hoverEnabled: true
                                                                 anchors.fill: parent
-                                                                onEntered: { todoItemCard.Material.elevation = 3 }
-                                                                onExited: { todoItemCard.Material.elevation = 1 }
+                                                                onEntered: todoItemCard.Material.elevation = 3
+                                                                onExited: todoItemCard.Material.elevation = 1
                                                         }
 
                                                         RowLayout {

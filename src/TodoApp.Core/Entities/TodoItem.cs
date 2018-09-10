@@ -8,6 +8,8 @@ namespace TodoApp.Core.Entities
 
         public string Title { get; set; }
 
+        public string Description { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         public DateTime? CompletedAt { get; set; }
@@ -15,6 +17,11 @@ namespace TodoApp.Core.Entities
         public void Create()
         {
             CreatedAt = DateTime.UtcNow;
+        }
+
+        public bool IsCompleted()
+        {
+            return CompletedAt != null;
         }
 
         public void MarkCompleted()

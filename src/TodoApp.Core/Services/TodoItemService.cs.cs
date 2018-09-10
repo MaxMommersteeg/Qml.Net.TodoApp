@@ -22,11 +22,12 @@ namespace TodoApp.Core.Services
             return todoItem.ToEntity();
         }
 
-        public Task AddTodoItem(string title)
+        public Task AddTodoItem(string title, string description)
         {
             var todoItem = new TodoItem
             {
-                Title = title
+                Title = title,
+                Description = description
             };
 
             todoItem.Create();
@@ -57,6 +58,11 @@ namespace TodoApp.Core.Services
                 .ToEntity();
 
             if (todoItem == null)
+            {
+                return;
+            }
+
+            if (todoItem.IsCompleted())
             {
                 return;
             }

@@ -12,7 +12,7 @@ namespace TodoApp.Core.Interfaces
 
         Task<List<TodoItem>> GetCompletedTodoItems();
 
-        Task AddTodoItem(string title);
+        Task AddTodoItem(string title, string description);
 
         Task MarkAsDone(int todoItemId);
 

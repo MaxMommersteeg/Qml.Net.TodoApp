@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TodoApp.Core.Interfaces;
 using TodoApp.FrontEnd.Model;
-using TodoApp.FrontEnd.Extensions;
 using System;
 using Humanizer;
 
@@ -13,7 +12,8 @@ namespace TodoApp.Controllers
     {
         private readonly ITodoItemService _todoItemService;
 
-        private IList<TodoItemModel> _todoItems = new List<TodoItemModel>();
+        private IList<TodoItemModel> _openTodoItems = new List<TodoItemModel>();
+        private IList<TodoItemModel> _completedTodoItems = new List<TodoItemModel>();
 
         public TodoItemsController(ITodoItemService todoItemService)
         {
@@ -26,15 +26,25 @@ namespace TodoApp.Controllers
         }
 
         [NotifySignal]
-        public IList<TodoItemModel> TodoItems
+        public IList<TodoItemModel> OpenTodoItems
         {
-            get { return _todoItems; }
-            private set => _todoItems = value;
+            get { return _openTodoItems; }
         }
 
-        public async Task AddTodoItem(string title)
+        [NotifySignal]
+        public IList<TodoItemModel> CompletedTodoItems
         {
-            await _todoItemService.AddTodoItem(title)
+            get { return _completedTodoItems; }
+        }
+
+        public async Task AddTodoItem(string title, string description)
+        {
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                return;
+            }
+
+            await _todoItemService.AddTodoItem(title, description)
                 .ConfigureAwait(false);
 
             await UpdateTodoItems()
@@ -57,8 +67,14 @@ namespace TodoApp.Controllers
 
         private async Task UpdateTodoItems()
         {
-            _todoItems = (await _todoItemService.GetOpenTodoItems().ConfigureAwait(false)).ToModel();
-            this.ActivateSignal("todoItemsChanged");
+            var updateOpenTodoItems = _todoItemService.GetOpenTodoItems();
+            var updateCompletedTodoItems = _todoItemService.GetCompletedTodoItems();
+
+            await Task.WhenAll(updateOpenTodoItems, updateCompletedTodoItems)
+                .ConfigureAwait(false);
+
+            this.ActivateSignal("openTodoItemsChanged");
+            this.ActivateSignal("completedTodoItemsChanged");
         }
     }
 }
