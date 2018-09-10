@@ -6,6 +6,7 @@ import QtQuick.Layouts 1.3
 import "Pages"
 
 ApplicationWindow {
+        id: window
         width: 800
         height: 600
         visible: true

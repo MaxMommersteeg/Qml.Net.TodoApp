@@ -10,13 +10,16 @@ Pane {
         width: parent.width
         height: 60
         Material.elevation: 1
-        property int itemId: modelData.id
+        property int todoItemId: modelData.id
+        property string todoItemTitle: modelData.title
+        property string todoItemDescription: modelData.description
 
         MouseArea {
                 hoverEnabled: true
                 anchors.fill: parent
                 onEntered: openTodoItemCard.Material.elevation = 3
                 onExited: openTodoItemCard.Material.elevation = 1
+                onClicked: todoItemDialog.open()
         }
 
         RowLayout {
@@ -40,19 +43,16 @@ Pane {
                         }
                 }
 
-                Label {
-                        text: modelData.description
-                        Layout.alignment: Qt.AlignLeft
-                        font.pointSize: 10
-                        color: '#777777'
-                }
-
                 MaterialButton {
                         Layout.alignment: Qt.AlignRight
                         text: "Done"
                         highlighted: true
                         Material.background: Material.Green
-                        onClicked: ctrl.markAsDone(openTodoItemCard.itemId)
+                        onClicked: ctrl.markAsDone(openTodoItemCard.todoItemId)
                 }
+        }
+
+        TodoItemDialog {
+                id: todoItemDialog
         }
 }
