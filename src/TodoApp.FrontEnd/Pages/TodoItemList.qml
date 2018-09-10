@@ -62,7 +62,7 @@ Page {
                                         spacing: 6
 
                                         Repeater {
-                                                model: Net.toJsArray(ctrl.todoItems)
+                                                model: Net.toListModel(ctrl.todoItems)
                                                 Component.onCompleted : {
                                                         ctrl.initialize()
                                                 }
@@ -72,6 +72,7 @@ Page {
                                                         width: parent.width
                                                         height: 60
                                                         Material.elevation: 1
+                                                        property int itemId: modelData.id
                                                         
                                                         MouseArea {
                                                                 hoverEnabled: true
@@ -106,9 +107,7 @@ Page {
                                                                         text: "Done"
                                                                         highlighted: true
                                                                         Material.background: Material.Green
-                                                                        onClicked: {
-                                                                                ctrl.markAsDone(modelData.id)
-                                                                        }
+                                                                        onClicked: ctrl.markAsDone(todoItemCard.itemId)
                                                                 }
                                                         }
                                                 }
