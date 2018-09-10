@@ -13,6 +13,7 @@ namespace TodoApp.Core.Extensions
             {
                 Id = todoItem.Id,
                 Title = todoItem.Title,
+                Description = todoItem.Description,
                 CreatedAt = todoItem.CreatedAt,
                 CompletedAt = todoItem.CompletedAt
             };
@@ -24,6 +25,7 @@ namespace TodoApp.Core.Extensions
             {
                 Id = todoItem.Id,
                 Title = todoItem.Title,
+                Description = todoItem.Description,
                 CreatedAt = todoItem.CreatedAt,
                 CompletedAt = todoItem.CompletedAt
             };

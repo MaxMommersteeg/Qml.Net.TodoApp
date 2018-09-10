@@ -5,6 +5,7 @@ using TodoApp.Core.Interfaces;
 using TodoApp.FrontEnd.Model;
 using System;
 using Humanizer;
+using TodoApp.FrontEnd.Extensions;
 
 namespace TodoApp.Controllers
 {
@@ -67,13 +68,10 @@ namespace TodoApp.Controllers
 
         private async Task UpdateTodoItems()
         {
-            var updateOpenTodoItems = _todoItemService.GetOpenTodoItems();
-            var updateCompletedTodoItems = _todoItemService.GetCompletedTodoItems();
-
-            await Task.WhenAll(updateOpenTodoItems, updateCompletedTodoItems)
-                .ConfigureAwait(false);
-
+            _openTodoItems = (await _todoItemService.GetOpenTodoItems().ConfigureAwait(false)).ToModel();
             this.ActivateSignal("openTodoItemsChanged");
+
+            _completedTodoItems = (await _todoItemService.GetCompletedTodoItems().ConfigureAwait(false)).ToModel();
             this.ActivateSignal("completedTodoItemsChanged");
         }
     }

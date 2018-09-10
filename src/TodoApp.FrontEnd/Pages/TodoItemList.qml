@@ -15,13 +15,11 @@ Page {
                 anchors.margins: 8
 
                 Pane {
-                        ColumnLayout {
-                        id: submitBox
                         Layout.fillWidth: true
 
                         RowLayout {
-                                Layout.fillWidth: true
-                                Layout.alignment: Qt.AlignLeft
+                                id: submitBox
+                                anchors.fill: parent
 
                                 TextField {
                                         id: txtTitle
@@ -29,13 +27,8 @@ Page {
                                         Layout.fillWidth: true
                                         Keys.onReturnPressed: submitBox.submitTodoItem()
                                 }
-                        }
 
-                        RowLayout {
-                                Layout.fillWidth: true
-                                Layout.alignment: Qt.AlignLeft
-
-                                TextArea {
+                                TextField {
                                         id: txtDescription
                                         placeholderText: "Description"
                                         Layout.fillWidth: true
@@ -48,17 +41,16 @@ Page {
                                         Material.background: Material.Green
                                         onClicked: submitBox.submitTodoItem()
                                 }
-                        }
 
-                        function submitTodoItem() {
-                                if (txtTitle.text !== "")
-                                {
-                                        ctrl.addTodoItem(txtTitle.text, txtDescription.text)
-                                        txtTitle.text = null
-                                        txtDescription.text = null
+                                function submitTodoItem() {
+                                        if (txtTitle.text !== "")
+                                        {
+                                                ctrl.addTodoItem(txtTitle.text, txtDescription.text)
+                                                txtTitle.text = null
+                                                txtDescription.text = null
+                                        }
                                 }
                         }
-                }
                 }
 
                 Divider { }
@@ -83,7 +75,7 @@ Page {
                                                         height: 60
                                                         Material.elevation: 1
                                                         property int itemId: modelData.id
-                                                        
+
                                                         MouseArea {
                                                                 hoverEnabled: true
                                                                 anchors.fill: parent
