@@ -13,11 +13,21 @@ Pane {
                 Column {
                         spacing: 6
 
+                        Text {
+                                text: "Open"
+                                Layout.alignment: Qt.AlignLeft
+                                font.pointSize: 14
+                                font.weight: Font.Bold
+                                color: '#000000'
+                                visible: repeater.count > 0 ? true : false
+                        }
+
                         Repeater {
+                                id: repeater
                                 model: Net.toListModel(ctrl.openTodoItems)
                                 Component.onCompleted: ctrl.initialize()
 
-                                TodoItemCard { }
+                                OpenTodoItemCard { }
                         }
                 }
         }

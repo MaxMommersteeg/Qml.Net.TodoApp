@@ -61,9 +61,26 @@ namespace TodoApp.Controllers
                 .ConfigureAwait(false);
         }
 
+        public async Task Delete(int todoItemId)
+        {
+            await _todoItemService.DeleteTodoItem(todoItemId)
+                .ConfigureAwait(false);
+
+            await UpdateTodoItems()
+                .ConfigureAwait(false);
+        }
+
         public string ToLocalDateTimeString(DateTime dateTime)
         {
             return dateTime.Humanize(utcDate: true);
+        }
+
+        public string ToPeriodString(DateTime start, DateTime end)
+        {
+            var localStart = start.ToLocalTime();
+            var localEnd = end.ToLocalTime();
+
+            return $"{localStart.ToString("yyyy-dd-MM HH:mm")} - {localEnd.ToString("yyyy-dd-MM HH:mm")}";
         }
 
         private async Task UpdateTodoItems()

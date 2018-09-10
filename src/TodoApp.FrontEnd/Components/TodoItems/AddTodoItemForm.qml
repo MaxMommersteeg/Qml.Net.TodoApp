@@ -3,7 +3,7 @@ import QtQuick.Controls 2.4
 import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.3
 
-import "../Components/Buttons"
+import "../Common"
 
 Pane {
         Layout.fillWidth: true

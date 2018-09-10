@@ -4,7 +4,8 @@ import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.3
 import TodoApp 1.0
 
-import "../Components"
+import "../Components/TodoItems"
+import "../Components/Common"
 
 Page {
         width: parent.width
@@ -15,9 +16,9 @@ Page {
 
                 AddTodoItemForm { }
 
-                Divider { }
+                CompletedTodoItemList { }
 
-                TodoItemCardList { }
+                OpenTodoItemList { }
         }
 
         TodoItemsController {

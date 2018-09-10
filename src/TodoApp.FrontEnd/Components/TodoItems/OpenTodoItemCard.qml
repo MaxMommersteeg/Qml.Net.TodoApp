@@ -3,10 +3,10 @@ import QtQuick.Controls 2.4
 import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.3
 
-import "../Components/Buttons"
+import "../Common"
 
 Pane {
-        id: todoItemCard
+        id: openTodoItemCard
         width: parent.width
         height: 60
         Material.elevation: 1
@@ -15,8 +15,8 @@ Pane {
         MouseArea {
                 hoverEnabled: true
                 anchors.fill: parent
-                onEntered: todoItemCard.Material.elevation = 3
-                onExited: todoItemCard.Material.elevation = 1
+                onEntered: openTodoItemCard.Material.elevation = 3
+                onExited: openTodoItemCard.Material.elevation = 1
         }
 
         RowLayout {
@@ -40,7 +40,7 @@ Pane {
                         }
                 }
 
-                Text {
+                Label {
                         text: modelData.description
                         Layout.alignment: Qt.AlignLeft
                         font.pointSize: 10
@@ -52,7 +52,7 @@ Pane {
                         text: "Done"
                         highlighted: true
                         Material.background: Material.Green
-                        onClicked: ctrl.markAsDone(todoItemCard.itemId)
+                        onClicked: ctrl.markAsDone(openTodoItemCard.itemId)
                 }
         }
 }

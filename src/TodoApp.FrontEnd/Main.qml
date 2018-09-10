@@ -27,7 +27,7 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
             
-                    TodoItemList {}
+                    TodoItemPage { }
                 }
     }
 }
