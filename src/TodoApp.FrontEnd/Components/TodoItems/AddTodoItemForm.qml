@@ -29,7 +29,7 @@ Pane {
                 MaterialButton {
                         text: "Submit"
                         highlighted: true
-                        Material.background: Material.Green
+                        Material.background: Material.Blue
                         onClicked: submitBox.submitTodoItem()
                 }
 

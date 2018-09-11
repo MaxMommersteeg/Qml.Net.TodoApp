@@ -16,7 +16,7 @@ Page {
 
                 AddTodoItemForm { }
 
-                CompletedTodoItemList { }
+                ClosedTodoItemList { }
 
                 OpenTodoItemList { }
         }

@@ -12,21 +12,31 @@ namespace TodoApp.Core.Entities
 
         public DateTime CreatedAt { get; set; }
 
-        public DateTime? CompletedAt { get; set; }
+        public DateTime? ClosedAt { get; set; }
 
         public void Create()
         {
             CreatedAt = DateTime.UtcNow;
         }
 
-        public bool IsCompleted()
+        public bool IsOpen()
         {
-            return CompletedAt != null;
+            return ClosedAt == null;
         }
 
-        public void MarkCompleted()
+        public bool IsClosed()
         {
-            CompletedAt = DateTime.UtcNow;
+            return ClosedAt != null;
+        }
+
+        public void Open()
+        {
+            ClosedAt = null;
+        }
+
+        public void Close()
+        {
+            ClosedAt = DateTime.UtcNow;
         }
     }
 }

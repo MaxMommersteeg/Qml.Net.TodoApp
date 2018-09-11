@@ -4,13 +4,13 @@ namespace TodoApp.FrontEnd.Model
 {
     public class TodoItemModel
     {
-        public TodoItemModel(int id, string title, string description, DateTime createdAt, DateTime? completedAt = null)
+        public TodoItemModel(int id, string title, string description, DateTime createdAt, DateTime? closedAt = null)
         {
             Id = id;
             Title = title;
             Description = description;
             CreatedAt = createdAt;
-            CompletedAt = completedAt;
+            ClosedAt = closedAt;
         }
 
         public int Id { get; private set; }
@@ -21,6 +21,6 @@ namespace TodoApp.FrontEnd.Model
 
         public DateTime CreatedAt { get; private set; }
 
-        public DateTime? CompletedAt { get; private set; }
+        public DateTime? ClosedAt { get; private set; }
     }
 }

@@ -12,6 +12,6 @@ namespace TodoApp.Core.Data
 
         public DateTime CreatedAt { get; set; }
 
-        public DateTime? CompletedAt { get; set; }
+        public DateTime? ClosedAt { get; set; }
     }
 }

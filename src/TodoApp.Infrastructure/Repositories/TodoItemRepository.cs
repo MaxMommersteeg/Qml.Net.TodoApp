@@ -56,7 +56,7 @@ namespace TodoApp.Infrastructure.Repositories
 
             entityToUpdate.Title = todoItem.Title;
             entityToUpdate.Description = todoItem.Description;
-            entityToUpdate.CompletedAt = todoItem.CompletedAt;
+            entityToUpdate.ClosedAt = todoItem.ClosedAt;
 
             _dbContext.Update(entityToUpdate);
 

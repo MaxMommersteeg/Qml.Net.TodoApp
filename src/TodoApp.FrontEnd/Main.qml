@@ -12,16 +12,15 @@ ApplicationWindow {
         visible: true
         title: "Todo App"
 
-        font.family: "Roboto"
         Material.theme: Material.Light
-        Material.accent: '#0D47A1'
         Material.primary: '#1E88E5'
+        Material.accent: Material.Green
 
         GridLayout {
                 anchors.fill: parent
                 anchors.margins: 0
-                rowSpacing: 25
-                columnSpacing: 20
+                rowSpacing: 10
+                columnSpacing: 10
                 flow:  width > height ? GridLayout.LeftToRight : GridLayout.TopToBottom
                 
                 Rectangle {

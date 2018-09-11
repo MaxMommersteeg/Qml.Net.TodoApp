@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.3
 import "../Common"
 
 Pane {
-        id: completedTodoItemCard
+        id: closedTodoItemCard
         width: parent.width
         height: 60
         Material.elevation: 1
@@ -17,8 +17,8 @@ Pane {
         MouseArea {
                 hoverEnabled: true
                 anchors.fill: parent
-                onEntered: completedTodoItemCard.Material.elevation = 3
-                onExited: completedTodoItemCard.Material.elevation = 1
+                onEntered: closedTodoItemCard.Material.elevation = 3
+                onExited: closedTodoItemCard.Material.elevation = 1
                 onClicked: todoItemDialog.open()
         }
 
@@ -28,7 +28,7 @@ Pane {
                 ColumnLayout {
 
                         Text {
-                                text: ctrl.toPeriodString(modelData.createdAt, modelData.completedAt)
+                                text: ctrl.toPeriodString(modelData.createdAt, modelData.closedAt)
                                 Layout.alignment: Qt.AlignLeft
                                 font.pointSize: 8
                                 color: '#9e9e9e'
@@ -45,10 +45,10 @@ Pane {
 
                 MaterialButton {
                         Layout.alignment: Qt.AlignRight
-                        text: "Delete"
+                        text: "Open"
                         highlighted: true
-                        Material.background: Material.Red
-                        onClicked: ctrl.delete(completedTodoItemCard.todoItemId)
+                        Material.background: Material.Green
+                        onClicked: ctrl.openTodoItem(closedTodoItemCard.todoItemId)
                 }
         }
 

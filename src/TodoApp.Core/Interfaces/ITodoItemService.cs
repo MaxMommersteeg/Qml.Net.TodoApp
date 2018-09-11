@@ -10,11 +10,13 @@ namespace TodoApp.Core.Interfaces
 
         Task<List<TodoItem>> GetOpenTodoItems();
 
-        Task<List<TodoItem>> GetCompletedTodoItems();
+        Task<List<TodoItem>> GetClosedTodoItems();
 
         Task AddTodoItem(string title, string description);
 
-        Task MarkAsDone(int todoItemId);
+        Task CloseTodoItem(int todoItemId);
+
+        Task OpenTodoItem(int todoItemId);
 
         Task DeleteTodoItem(int todoItemId);
     }

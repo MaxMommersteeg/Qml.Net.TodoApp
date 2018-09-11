@@ -16,7 +16,7 @@ namespace TodoApp.FrontEnd.Extensions
                     todoItemEntity.Title,
                     todoItemEntity.Description,
                     todoItemEntity.CreatedAt,
-                    todoItemEntity.CompletedAt));
+                    todoItemEntity.ClosedAt));
             }
 
             return result;

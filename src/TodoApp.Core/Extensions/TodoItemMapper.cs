@@ -15,7 +15,7 @@ namespace TodoApp.Core.Extensions
                 Title = todoItem.Title,
                 Description = todoItem.Description,
                 CreatedAt = todoItem.CreatedAt,
-                CompletedAt = todoItem.CompletedAt
+                ClosedAt = todoItem.ClosedAt
             };
         }
 
@@ -27,7 +27,7 @@ namespace TodoApp.Core.Extensions
                 Title = todoItem.Title,
                 Description = todoItem.Description,
                 CreatedAt = todoItem.CreatedAt,
-                CompletedAt = todoItem.CompletedAt
+                ClosedAt = todoItem.ClosedAt
             };
         }
 

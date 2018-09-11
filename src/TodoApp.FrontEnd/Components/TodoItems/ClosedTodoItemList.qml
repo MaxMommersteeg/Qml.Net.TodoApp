@@ -14,7 +14,7 @@ Pane {
                         spacing: 6
 
                         Text {
-                                text: "Completed"
+                                text: "Closed"
                                 Layout.alignment: Qt.AlignLeft
                                 font.pointSize: 14
                                 font.weight: Font.Bold
@@ -24,10 +24,10 @@ Pane {
 
                         Repeater {
                                 id: repeater
-                                model: Net.toListModel(ctrl.completedTodoItems)
+                                model: Net.toListModel(ctrl.closedTodoItems)
                                 Component.onCompleted: ctrl.initialize()
 
-                                CompletedTodoItemCard { }
+                                ClosedTodoItemCard { }
                         }
                 }
         }

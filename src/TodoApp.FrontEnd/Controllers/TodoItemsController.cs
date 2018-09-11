@@ -14,7 +14,7 @@ namespace TodoApp.Controllers
         private readonly ITodoItemService _todoItemService;
 
         private IList<TodoItemModel> _openTodoItems = new List<TodoItemModel>();
-        private IList<TodoItemModel> _completedTodoItems = new List<TodoItemModel>();
+        private IList<TodoItemModel> _closedTodoItems = new List<TodoItemModel>();
 
         public TodoItemsController(ITodoItemService todoItemService)
         {
@@ -33,9 +33,9 @@ namespace TodoApp.Controllers
         }
 
         [NotifySignal]
-        public IList<TodoItemModel> CompletedTodoItems
+        public IList<TodoItemModel> ClosedTodoItems
         {
-            get { return _completedTodoItems; }
+            get { return _closedTodoItems; }
         }
 
         public async Task AddTodoItem(string title, string description)
@@ -52,16 +52,25 @@ namespace TodoApp.Controllers
                 .ConfigureAwait(false);
         }
 
-        public async Task MarkAsDone(int todoItemId)
+        public async Task CloseTodoItem(int todoItemId)
         {
-            await _todoItemService.MarkAsDone(todoItemId)
+            await _todoItemService.CloseTodoItem(todoItemId)
                 .ConfigureAwait(false);
 
             await UpdateTodoItems()
                 .ConfigureAwait(false);
         }
 
-        public async Task Delete(int todoItemId)
+        public async Task OpenTodoItem(int todoItemId)
+        {
+            await _todoItemService.OpenTodoItem(todoItemId)
+                .ConfigureAwait(false);
+
+            await UpdateTodoItems()
+                .ConfigureAwait(false);
+        }
+
+        public async Task DeleteTodoItem(int todoItemId)
         {
             await _todoItemService.DeleteTodoItem(todoItemId)
                 .ConfigureAwait(false);
@@ -88,8 +97,8 @@ namespace TodoApp.Controllers
             _openTodoItems = (await _todoItemService.GetOpenTodoItems().ConfigureAwait(false)).ToModel();
             this.ActivateSignal("openTodoItemsChanged");
 
-            _completedTodoItems = (await _todoItemService.GetCompletedTodoItems().ConfigureAwait(false)).ToModel();
-            this.ActivateSignal("completedTodoItemsChanged");
+            _closedTodoItems = (await _todoItemService.GetClosedTodoItems().ConfigureAwait(false)).ToModel();
+            this.ActivateSignal("closedTodoItemsChanged");
         }
     }
 }

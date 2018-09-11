@@ -45,10 +45,10 @@ Pane {
 
                 MaterialButton {
                         Layout.alignment: Qt.AlignRight
-                        text: "Done"
+                        text: "Close"
                         highlighted: true
-                        Material.background: Material.Green
-                        onClicked: ctrl.markAsDone(openTodoItemCard.todoItemId)
+                        Material.background: Material.Red
+                        onClicked: ctrl.closeTodoItem(openTodoItemCard.todoItemId)
                 }
         }
 
