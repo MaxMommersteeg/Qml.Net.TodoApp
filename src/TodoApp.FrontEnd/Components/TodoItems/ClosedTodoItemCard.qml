@@ -30,7 +30,7 @@ Pane {
                         Text {
                                 text: ctrl.toPeriodString(modelData.createdAt, modelData.closedAt)
                                 Layout.alignment: Qt.AlignLeft
-                                font.pointSize: 8
+                                font.pointSize: 10
                                 color: '#9e9e9e'
                         }
 

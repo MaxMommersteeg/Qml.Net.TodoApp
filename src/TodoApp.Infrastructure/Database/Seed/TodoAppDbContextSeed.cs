@@ -21,13 +21,13 @@ namespace TodoApp.Infrastructure.Database.Seed
             {
                 Title = "Setup a meeting with stakeholders",
                 Description = "Make some calls, send some e-mails.",
-                ClosedAt = new DateTime(2018, 7, 12, 10, 0, 0, DateTimeKind.Utc)
+                CreatedAt = new DateTime(2018, 7, 12, 10, 0, 0, DateTimeKind.Utc)
             },
             new TodoItem
             {
                 Title = "Get a haircut",
                 Description = "Make an appointment.",
-                ClosedAt = new DateTime(2018, 8, 20, 10, 0, 0, DateTimeKind.Utc),
+                CreatedAt = new DateTime(2018, 8, 20, 10, 0, 0, DateTimeKind.Utc),
             }
         };
 
