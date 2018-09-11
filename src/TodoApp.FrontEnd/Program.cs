@@ -24,7 +24,7 @@ namespace TodoApp
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            // Seed database. Do NOT dispose dbContext, that would destroy our only Singleton instance.
+            // Seed database. Do NOT dispose dbContext, that would destroy our only dbContext singleton instance.
             var dbContext = serviceProvider.GetService<TodoAppDbContext>();
             await dbContext.EnsureSeedData().ConfigureAwait(false);
 
