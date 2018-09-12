@@ -89,7 +89,7 @@ namespace TodoApp.Controllers
             var localStart = start.ToLocalTime();
             var localEnd = end.ToLocalTime();
 
-            return $"{localStart.ToString("yyyy-dd-MM HH:mm")} - {localEnd.ToString("yyyy-dd-MM HH:mm")}";
+            return $"{localStart.ToString("yyyy-dd-MM")} until {localEnd.ToString("yyyy-dd-MM")}";
         }
 
         private async Task UpdateTodoItems()
