@@ -25,7 +25,7 @@ namespace TodoApp
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             // Seed database. Do NOT dispose dbContext, that would destroy our only dbContext singleton instance.
-            var dbContext = serviceProvider.GetService<TodoAppDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<TodoAppDbContext>();
             await dbContext.EnsureSeedData().ConfigureAwait(false);
 
             QQuickStyle.SetStyle("Material");
