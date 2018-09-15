@@ -25,6 +25,7 @@ Pane {
             placeholderText: "Title"
             Layout.fillWidth: true
             Keys.onReturnPressed: addTodoItemForm.submitTodoItem()
+            Keys.onEnterPressed: addTodoItemForm.submitTodoItem()
         }
 
         TextField {
@@ -32,6 +33,7 @@ Pane {
             placeholderText: "Description"
             Layout.fillWidth: true
             Keys.onReturnPressed: addTodoItemForm.submitTodoItem()
+            Keys.onEnterPressed: addTodoItemForm.submitTodoItem()
         }
 
         MaterialButton {
