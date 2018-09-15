@@ -35,7 +35,7 @@ Pane {
     MouseArea {
         hoverEnabled: true
         anchors.fill: parent
-        onEntered: todoItemCard.Material.elevation = 3
+        onEntered: todoItemCard.Material.elevation = 5
         onExited: todoItemCard.Material.elevation = 1
         onClicked: todoItemCard.openTodoItemDialog(todoItemCard.itemId, todoItemCard.itemTitle, todoItemCard.itemDescription)
     }
@@ -65,7 +65,7 @@ Pane {
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             text: todoItemCard.itemIsOpen ? "Close" : "Open"
             highlighted: true
-            Material.background: todoItemCard.itemIsOpen ? Material.Red : Material.Green
+            Material.background: todoItemCard.itemIsOpen ? Material.Orange : Material.Green
 
             PointingHandCursorOnHover {
                 onClicked: todoItemCard.itemIsOpen ? todoItemCard.closeTodoItem(todoItemCard.itemId) : todoItemCard.openTodoItem(todoItemCard.itemId)

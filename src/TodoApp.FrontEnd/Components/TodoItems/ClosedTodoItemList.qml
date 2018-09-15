@@ -9,7 +9,7 @@ Pane {
     Layout.fillWidth: true
     Layout.fillHeight: true
 
-	property TodoItemsController target: null
+    property TodoItemsController target: null
 
     StackLayout {
         anchors.fill: parent
