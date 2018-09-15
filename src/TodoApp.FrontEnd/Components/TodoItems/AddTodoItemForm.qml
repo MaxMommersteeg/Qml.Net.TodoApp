@@ -4,7 +4,7 @@ import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.3
 import TodoApp 1.0
 
-import "../Common"
+import "../Behaviors"
 
 Pane {
     id: addTodoItemForm
@@ -36,11 +36,14 @@ Pane {
             Keys.onEnterPressed: addTodoItemForm.submitTodoItem()
         }
 
-        MaterialButton {
+        Button {
             text: "Submit"
             highlighted: true
             Material.background: Material.Blue
-            onClicked: addTodoItemForm.submitTodoItem()
+
+            PointingHandCursorOnHover {
+                onClicked: addTodoItemForm.submitTodoItem()
+            }
         }
     }
 

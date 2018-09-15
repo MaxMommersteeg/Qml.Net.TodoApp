@@ -3,7 +3,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.1
 import QtQuick.Layouts 1.3
 
-import "../Common"
+import "../Behaviors"
 
 Dialog {
     id: root
@@ -16,31 +16,36 @@ Dialog {
     focus: true
     title: todoItemTitle
     x: (window.width - width) / 2
-    y: 0
+    y: 10
     width: Math.min(window.width, window.height) / 3 * 2
-    height: 200
+    height: Math.min(window.width, window.height) / 2
 
 	ColumnLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
+        anchors.fill: parent
 
         Label {
-            width: root.availableWidth
             text: root.todoItemDescription
-            wrapMode: Label.Wrap
+            wrapMode: Text.WordWrap
             font.pixelSize: 14
+            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            Layout.fillWidth: true
             color: '#777777'
         }
 
-        MaterialButton {
+        Button {
             text: "Delete"
             highlighted: true
-            Layout.alignment: Qt.AlignRight
+            Layout.alignment: Qt.AlignRight | Qt.AlignBottom
             Material.background: Material.Red
-            onClicked: {
-                if (root.todoItemId !== -1) {
-                    ctrl.deleteTodoItem(todoItemId)
-                    root.close()
+
+            PointingHandCursorOnHover { 
+                onClicked: {
+                    if (root.todoItemId !== -1) {
+                        ctrl.deleteTodoItem(todoItemId)
+                        root.close()
+                    }
                 }
             }
         }

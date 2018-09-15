@@ -4,7 +4,7 @@ import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.3
 import TodoApp 1.0
 
-import "../Common"
+import "../Behaviors"
 
 Pane {
     id: todoItemCard
@@ -12,18 +12,19 @@ Pane {
     height: 60
     Material.elevation: 1
 
-    property int itemId: modelData.id
-    property string itemTitle: modelData.title
-    property string itemDescription: modelData.description
-    property bool itemIsOpen: modelData.isOpen()
-    property TodoItemsController target: null
+    readonly property int itemId: modelData.id
+    readonly property string itemTitle: modelData.title
+    readonly property string itemDescription: modelData.description
+    readonly property bool itemIsOpen: modelData.isOpen()
+    
+	property TodoItemsController target: null
 
     signal openTodoItem(int todoItemId)
     signal closeTodoItem(int todoItemId)
     signal openTodoItemDialog(int todoItemId, string title, string description)
     onTargetChanged: {
         if (todoItemCard.itemIsOpen) {
-            closeTodoItem.connect(target.handleCloseTodoItem)	
+            closeTodoItem.connect(target.handleCloseTodoItem)
         } else {
             openTodoItem.connect(target.handleOpenTodoItem)
         }
@@ -46,26 +47,29 @@ Pane {
 
             Text {
                 text: todoItemCard.itemIsOpen ? ctrl.toLocalDateTimeString(modelData.createdAt) : ctrl.toPeriodString(modelData.createdAt, modelData.closedAt)
-                Layout.alignment: Qt.AlignLeft
+                Layout.alignment: Qt.AlignLeft | Qt.AlignTop
                 font.pointSize: 10
                 color: '#9e9e9e'
             }
 
             Text {
                 text: todoItemCard.itemTitle
-                Layout.alignment: Qt.AlignLeft
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 font.pointSize: 14
                 font.weight: Font.Bold
                 color: '#777777'
             }
         }
 
-        MaterialButton {
-            Layout.alignment: Qt.AlignRight
+        Button {
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             text: todoItemCard.itemIsOpen ? "Close" : "Open"
             highlighted: true
             Material.background: todoItemCard.itemIsOpen ? Material.Red : Material.Green
-            onClicked: todoItemCard.itemIsOpen ? todoItemCard.closeTodoItem(todoItemCard.itemId) : todoItemCard.openTodoItem(todoItemCard.itemId)
+
+            PointingHandCursorOnHover {
+                onClicked: todoItemCard.itemIsOpen ? todoItemCard.closeTodoItem(todoItemCard.itemId) : todoItemCard.openTodoItem(todoItemCard.itemId)
+            }
         }
     }
 }

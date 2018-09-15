@@ -20,7 +20,6 @@ Pane {
             Repeater {
                 id: repeater
                 model: Net.toListModel(ctrl.closedTodoItems)
-				//Component.onCompleted: ctrl.initialize()
 
                 TodoItemCard {
                     target: todoItemList.target
