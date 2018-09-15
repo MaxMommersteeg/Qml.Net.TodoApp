@@ -22,5 +22,10 @@ namespace TodoApp.FrontEnd.Model
         public DateTime CreatedAt { get; private set; }
 
         public DateTime? ClosedAt { get; private set; }
+
+        public bool IsOpen()
+        {
+            return ClosedAt == null;
+        }
     }
 }

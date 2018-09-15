@@ -45,38 +45,30 @@ namespace TodoApp.Controllers
                 return;
             }
 
-            await _todoItemService.AddTodoItem(title, description)
-                .ConfigureAwait(false);
+            await _todoItemService.AddTodoItem(title, description);
 
-            await UpdateTodoItems()
-                .ConfigureAwait(false);
+            await UpdateTodoItems();
         }
 
         public async Task CloseTodoItem(int todoItemId)
         {
-            await _todoItemService.CloseTodoItem(todoItemId)
-                .ConfigureAwait(false);
+            await _todoItemService.CloseTodoItem(todoItemId);
 
-            await UpdateTodoItems()
-                .ConfigureAwait(false);
+            await UpdateTodoItems();
         }
 
         public async Task OpenTodoItem(int todoItemId)
         {
-            await _todoItemService.OpenTodoItem(todoItemId)
-                .ConfigureAwait(false);
+            await _todoItemService.OpenTodoItem(todoItemId);
 
-            await UpdateTodoItems()
-                .ConfigureAwait(false);
+            await UpdateTodoItems();
         }
 
         public async Task DeleteTodoItem(int todoItemId)
         {
-            await _todoItemService.DeleteTodoItem(todoItemId)
-                .ConfigureAwait(false);
+            await _todoItemService.DeleteTodoItem(todoItemId);
 
-            await UpdateTodoItems()
-                .ConfigureAwait(false);
+            await UpdateTodoItems();
         }
 
         public string ToLocalDateTimeString(DateTime dateTime)
@@ -92,12 +84,20 @@ namespace TodoApp.Controllers
             return $"{localStart.ToString("yyyy-dd-MM")} until {localEnd.ToString("yyyy-dd-MM")}";
         }
 
-        private async Task UpdateTodoItems()
+        private Task UpdateTodoItems()
         {
-            _openTodoItems = (await _todoItemService.GetOpenTodoItems().ConfigureAwait(false)).ToModel();
-            this.ActivateSignal("openTodoItemsChanged");
+            return Task.WhenAll(UpdateOpenTodoItems(), UpdateClosedTodoItems());
+        }
 
-            _closedTodoItems = (await _todoItemService.GetClosedTodoItems().ConfigureAwait(false)).ToModel();
+        private async Task UpdateOpenTodoItems()
+        {
+            _openTodoItems = (await _todoItemService.GetOpenTodoItems()).ToModel();
+            this.ActivateSignal("openTodoItemsChanged");
+        }
+
+        private async Task UpdateClosedTodoItems()
+        {
+            _closedTodoItems = (await _todoItemService.GetClosedTodoItems()).ToModel();
             this.ActivateSignal("closedTodoItemsChanged");
         }
     }

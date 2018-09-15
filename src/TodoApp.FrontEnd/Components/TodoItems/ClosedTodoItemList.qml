@@ -2,33 +2,30 @@
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.3
+import TodoApp 1.0
 
 Pane {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
+    id: todoItemList
+    Layout.fillWidth: true
+    Layout.fillHeight: true
 
-        StackLayout {
-                anchors.fill: parent
+	property TodoItemsController target: null
 
-                Column {
-                        spacing: 6
+    StackLayout {
+        anchors.fill: parent
 
-                        Text {
-                                text: "Closed"
-                                Layout.alignment: Qt.AlignLeft
-                                font.pointSize: 14
-                                font.weight: Font.Bold
-                                color: '#000000'
-                                visible: repeater.count > 0 ? true : false
-                        }
+        Column {
+            spacing: 6
 
-                        Repeater {
-                                id: repeater
-                                model: Net.toListModel(ctrl.closedTodoItems)
-                                Component.onCompleted: ctrl.initialize()
+            Repeater {
+                id: repeater
+                model: Net.toListModel(ctrl.closedTodoItems)
+				//Component.onCompleted: ctrl.initialize()
 
-                                ClosedTodoItemCard { }
-                        }
+                TodoItemCard {
+                    target: todoItemList.target
                 }
+            }
         }
+    }
 }

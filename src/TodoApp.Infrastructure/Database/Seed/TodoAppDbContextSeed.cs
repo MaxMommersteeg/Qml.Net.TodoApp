@@ -38,11 +38,9 @@ namespace TodoApp.Infrastructure.Database.Seed
                 return;
             }
 
-            await dbContext.AddRangeAsync(_todoItems)
-                .ConfigureAwait(false);
+            await dbContext.AddRangeAsync(_todoItems);
 
-            await dbContext.SaveChangesAsync()
-                .ConfigureAwait(false);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

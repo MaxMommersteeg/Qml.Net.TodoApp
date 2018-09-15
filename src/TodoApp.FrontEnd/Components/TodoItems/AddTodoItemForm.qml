@@ -2,44 +2,52 @@
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Material 2.4
 import QtQuick.Layouts 1.3
+import TodoApp 1.0
 
 import "../Common"
 
 Pane {
-        Layout.fillWidth: true
+    id: addTodoItemForm
 
-        RowLayout {
-                id: submitBox
-                anchors.fill: parent
+    Layout.fillWidth: true
 
-                TextField {
-                        id: txtTitle
-                        placeholderText: "Title"
-                        Layout.fillWidth: true
-                        Keys.onReturnPressed: submitBox.submitTodoItem()
-                }
+    property TodoItemsController target: null
 
-                TextField {
-                        id: txtDescription
-                        placeholderText: "Description"
-                        Layout.fillWidth: true
-                        Keys.onReturnPressed: submitBox.submitTodoItem()
-                }
+    signal addTodoItem(string title, string description)
+    onTargetChanged: addTodoItem.connect(target.handleAddTodoItem)
 
-                MaterialButton {
-                        text: "Submit"
-                        highlighted: true
-                        Material.background: Material.Blue
-                        onClicked: submitBox.submitTodoItem()
-                }
+    RowLayout {
+        id: submitBox
+        anchors.fill: parent
 
-                function submitTodoItem() {
-                        if (txtTitle.text !== "")
-                        {
-                                ctrl.addTodoItem(txtTitle.text, txtDescription.text)
-                                txtTitle.text = null
-                                txtDescription.text = null
-                        }
-                }
+        TextField {
+            id: txtTitle
+            placeholderText: "Title"
+            Layout.fillWidth: true
+            Keys.onReturnPressed: addTodoItemForm.submitTodoItem()
         }
+
+        TextField {
+            id: txtDescription
+            placeholderText: "Description"
+            Layout.fillWidth: true
+            Keys.onReturnPressed: addTodoItemForm.submitTodoItem()
+        }
+
+        MaterialButton {
+            text: "Submit"
+            highlighted: true
+            Material.background: Material.Blue
+            onClicked: addTodoItemForm.submitTodoItem()
+        }
+    }
+
+    function submitTodoItem() {
+        if (txtTitle.text !== "")
+        {
+            addTodoItemForm.addTodoItem(txtTitle.text, txtDescription.text)
+            txtTitle.text = null
+            txtDescription.text = null
+        }
+    }
 }
