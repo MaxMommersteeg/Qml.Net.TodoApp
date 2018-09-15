@@ -8,6 +8,10 @@ import "../Common"
 Dialog {
         id: root
 
+		property int todoItemId: -1
+		property string todoItemTitle: ""
+		property string todoItemDescription: ""
+
         modal: true
         focus: true
         title: todoItemTitle
@@ -22,7 +26,7 @@ Dialog {
 
 			Label {
                 width: root.availableWidth
-                text: todoItemDescription
+                text: root.todoItemDescription
                 wrapMode: Label.Wrap
                 font.pixelSize: 14
                 color: '#777777'
@@ -33,7 +37,11 @@ Dialog {
 				highlighted: true
 				Layout.alignment: Qt.AlignRight
 				Material.background: Material.Red
-				onClicked: ctrl.deleteTodoItem(todoItemId)
+				onClicked: {
+					if (root.todoItemId !== -1) {
+						ctrl.deleteTodoItem(todoItemId)
+					}
+				}
 			}
 		}
 }

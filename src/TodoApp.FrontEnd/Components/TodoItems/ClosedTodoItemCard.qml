@@ -10,16 +10,22 @@ Pane {
         width: parent.width
         height: 60
         Material.elevation: 1
-        property int todoItemId: modelData.id
-        property string todoItemTitle: modelData.title
-        property string todoItemDescription: modelData.description
+        property int itemId: modelData.id
+        property string itemTitle: modelData.title
+        property string itemDescription: modelData.description
 
         MouseArea {
                 hoverEnabled: true
                 anchors.fill: parent
                 onEntered: closedTodoItemCard.Material.elevation = 3
                 onExited: closedTodoItemCard.Material.elevation = 1
-                onClicked: todoItemDialog.open()
+                onClicked: {
+                        todoItemDialog.todoItemId = closedTodoItemCard.itemId
+                        todoItemDialog.todoItemTitle = closedTodoItemCard.itemTitle
+                        todoItemDialog.todoItemDescription = closedTodoItemCard.itemDescription
+                        todoItemDialog.open()
+                        todoItemDialog.open()
+                }
         }
 
         RowLayout {
@@ -35,7 +41,7 @@ Pane {
                         }
 
                         Text {
-                                text: modelData.title
+                                text: closedTodoItemCard.itemTitle
                                 Layout.alignment: Qt.AlignLeft
                                 font.pointSize: 14
                                 font.weight: Font.Bold
@@ -48,7 +54,7 @@ Pane {
                         text: "Open"
                         highlighted: true
                         Material.background: Material.Green
-                        onClicked: ctrl.openTodoItem(closedTodoItemCard.todoItemId)
+                        onClicked: ctrl.openTodoItem(closedTodoItemCard.itemId)
                 }
         }
 
