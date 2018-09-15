@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Data = TodoApp.Core.Data;
 using Entity = TodoApp.Core.Entities;
 
 namespace TodoApp.Core.Extensions

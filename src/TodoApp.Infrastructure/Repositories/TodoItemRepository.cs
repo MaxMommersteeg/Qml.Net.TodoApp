@@ -38,17 +38,14 @@ namespace TodoApp.Infrastructure.Repositories
 
         public async Task Add(TodoItem todoItem)
         {
-            await _dbContext.AddAsync(todoItem)
-                .ConfigureAwait(false);
+            await _dbContext.AddAsync(todoItem);
 
-            await SaveChanges()
-                .ConfigureAwait(false);
+            await SaveChanges();
         }
 
         public async Task Update(TodoItem todoItem)
         {
-            var entityToUpdate = await GetById(todoItem.Id)
-                .ConfigureAwait(false);
+            var entityToUpdate = await GetById(todoItem.Id);
             if (entityToUpdate == null)
             {
                 return;
@@ -60,14 +57,12 @@ namespace TodoApp.Infrastructure.Repositories
 
             _dbContext.Update(entityToUpdate);
 
-            await SaveChanges()
-                .ConfigureAwait(false);
+            await SaveChanges();
         }
 
         public async Task Delete(int todoItemId)
         {
-            var entityToDelete = await GetById(todoItemId)
-                .ConfigureAwait(false);
+            var entityToDelete = await GetById(todoItemId);
             if (entityToDelete == null)
             {
                 return;
@@ -75,8 +70,7 @@ namespace TodoApp.Infrastructure.Repositories
 
             _dbContext.Remove(entityToDelete);
 
-            await SaveChanges()
-                .ConfigureAwait(false);
+            await SaveChanges();
         }
 
         private Task SaveChanges()

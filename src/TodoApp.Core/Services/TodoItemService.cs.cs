@@ -37,25 +37,19 @@ namespace TodoApp.Core.Services
 
         public async Task<List<TodoItem>> GetClosedTodoItems()
         {
-            var todoItems = (await _todoItemRepository.Get(x => x.ClosedAt != null)
-                .ConfigureAwait(false))
-                .ToEntities();
+            var todoItems = (await _todoItemRepository.Get(x => x.ClosedAt != null)).ToEntities();
             return todoItems.OrderBy(x => x.CreatedAt).ToList();
         }
 
         public async Task<List<TodoItem>> GetOpenTodoItems()
         {
-            var todoItems = (await _todoItemRepository.Get(x => x.ClosedAt == null)
-                .ConfigureAwait(false))
-                .ToEntities();
+            var todoItems = (await _todoItemRepository.Get(x => x.ClosedAt == null)).ToEntities();
             return todoItems.OrderBy(x => x.CreatedAt).ToList();
         }
 
         public async Task CloseTodoItem(int todoItemId)
         {
-            var todoItem = (await _todoItemRepository.GetById(todoItemId)
-                .ConfigureAwait(false))
-                .ToEntity();
+            var todoItem = (await _todoItemRepository.GetById(todoItemId)).ToEntity();
 
             if (todoItem == null)
             {
@@ -68,15 +62,12 @@ namespace TodoApp.Core.Services
             }
 
             todoItem.Close();
-            await _todoItemRepository.Update(todoItem.ToData())
-                .ConfigureAwait(false);
+            await _todoItemRepository.Update(todoItem.ToData());
         }
 
         public async Task OpenTodoItem(int todoItemId)
         {
-            var todoItem = (await _todoItemRepository.GetById(todoItemId)
-                .ConfigureAwait(false))
-                .ToEntity();
+            var todoItem = (await _todoItemRepository.GetById(todoItemId)).ToEntity();
 
             if (todoItem == null)
             {
@@ -89,8 +80,7 @@ namespace TodoApp.Core.Services
             }
 
             todoItem.Open();
-            await _todoItemRepository.Update(todoItem.ToData())
-                .ConfigureAwait(false);
+            await _todoItemRepository.Update(todoItem.ToData());
         }
 
         public Task DeleteTodoItem(int todoItemId)
