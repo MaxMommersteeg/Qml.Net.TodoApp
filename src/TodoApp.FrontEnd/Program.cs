@@ -34,7 +34,7 @@ namespace TodoApp
             {
                 using (var qmlEngine = new QQmlApplicationEngine())
                 {
-                    QQmlApplicationEngine.RegisterType<TodoItemsController>("TodoApp");
+                    Qml.Net.Qml.RegisterType<TodoItemsController>("TodoApp");
 
                     TypeCreator.Current = TypeCreator.FromDelegate((type) => serviceProvider.GetRequiredService(type));
 
