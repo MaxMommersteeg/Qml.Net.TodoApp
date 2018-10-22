@@ -3,3 +3,4 @@ solution: TodoApp.sln
 dotnet: 2.1.403
 script:
 - dotnet restore
+- dotnet build
