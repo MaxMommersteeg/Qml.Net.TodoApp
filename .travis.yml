@@ -1,2 +1,2 @@
 language: csharp
-solution: ./TodoApp.sln.sln
+solution: TodoApp.sln
