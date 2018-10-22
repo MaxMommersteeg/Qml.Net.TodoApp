@@ -31,7 +31,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="Qml.Net" Version="0.6.2" />
     <PackageReference Include="Qml.Net.OSXBinaries" Version="0.6.2" />
-    <PackageReference Include="Qml.Net.WindowsBinaries" Version="0.6.0" />
+    <PackageReference Include="Qml.Net.WindowsBinaries" Version="0.6.2" />
     <PackageReference Include="Qml.Net.LinuxBinaries" Version="0.6.0" />
   </ItemGroup>
 
