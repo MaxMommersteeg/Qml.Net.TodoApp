@@ -1,4 +1,4 @@
-# Qml.Net.TodoApp
+# Qml.Net.TodoApp | [![Build Status](https://travis-ci.com/MaxMommersteeg/Qml.Net.TodoApp.svg?branch=master)](https://travis-ci.com/MaxMommersteeg/Qml.Net.TodoApp)
 A simple todo app written using [Qml.Net](https://github.com/pauldotknopf/Qml.Net).
 
 ## Running the app
