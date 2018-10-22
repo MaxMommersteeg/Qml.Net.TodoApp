@@ -1,7 +1,10 @@
 language: csharp
+dist: trusty
 mono: none
-solution: TodoApp.sln
 dotnet: 2.1.403
-script:
+
+install:
 - dotnet restore
+
+script:
 - dotnet build
