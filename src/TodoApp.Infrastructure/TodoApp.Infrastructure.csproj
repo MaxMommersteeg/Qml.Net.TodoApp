@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>TodoApp.Infrastructure</AssemblyName>
     <RootNamespace>TodoApp.Infrastructure</RootNamespace>
+    <CodeAnalysisRuleSet>../../StyleCop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -17,6 +18,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+    </PackageReference>
   </ItemGroup>
   
   <ItemGroup>

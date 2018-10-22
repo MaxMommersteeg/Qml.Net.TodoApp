@@ -6,6 +6,7 @@
     <RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
     <AssemblyName>TodoApp.FrontEnd</AssemblyName>
     <RootNamespace>TodoApp.FrontEnd</RootNamespace>
+    <CodeAnalysisRuleSet>../../StyleCop.ruleset</CodeAnalysisRuleSet>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
@@ -33,6 +34,8 @@
     <PackageReference Include="Qml.Net.OSXBinaries" Version="0.6.2" />
     <PackageReference Include="Qml.Net.WindowsBinaries" Version="0.6.2" />
     <PackageReference Include="Qml.Net.LinuxBinaries" Version="0.6.2" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
