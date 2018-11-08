@@ -13,11 +13,10 @@ namespace TodoApp.Controllers
     {
         private readonly ITodoItemService _todoItemService;
 
-        private IList<TodoItemModel> _openTodoItems = new List<TodoItemModel>();
-        private IList<TodoItemModel> _closedTodoItems = new List<TodoItemModel>();
-
         public TodoItemsController(ITodoItemService todoItemService)
         {
+            OpenTodoItems = new List<TodoItemModel>();
+            ClosedTodoItems = new List<TodoItemModel>();
             _todoItemService = todoItemService;
         }
 
@@ -27,16 +26,10 @@ namespace TodoApp.Controllers
         }
 
         [NotifySignal]
-        public IList<TodoItemModel> OpenTodoItems
-        {
-            get { return _openTodoItems; }
-        }
+        public IList<TodoItemModel> OpenTodoItems { get; private set; }
 
         [NotifySignal]
-        public IList<TodoItemModel> ClosedTodoItems
-        {
-            get { return _closedTodoItems; }
-        }
+        public IList<TodoItemModel> ClosedTodoItems { get; private set; }
 
         public async Task AddTodoItem(string title, string description)
         {
@@ -91,13 +84,13 @@ namespace TodoApp.Controllers
 
         private async Task UpdateOpenTodoItems()
         {
-            _openTodoItems = (await _todoItemService.GetOpenTodoItems()).ToModel();
+            OpenTodoItems = (await _todoItemService.GetOpenTodoItems()).ToModel();
             this.ActivateSignal("openTodoItemsChanged");
         }
 
         private async Task UpdateClosedTodoItems()
         {
-            _closedTodoItems = (await _todoItemService.GetClosedTodoItems()).ToModel();
+            ClosedTodoItems = (await _todoItemService.GetClosedTodoItems()).ToModel();
             this.ActivateSignal("closedTodoItemsChanged");
         }
     }
