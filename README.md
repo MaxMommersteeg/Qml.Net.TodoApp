@@ -1,5 +1,5 @@
 # Qml.Net.TodoApp | [![Build Status](https://travis-ci.com/MaxMommersteeg/Qml.Net.TodoApp.svg?branch=master)](https://travis-ci.com/MaxMommersteeg/Qml.Net.TodoApp)
-A simple todo app written using [Qml.Net](https://github.com/pauldotknopf/Qml.Net).
+A simple todo app written using [Qml.Net](https://github.com/qmlnet/qmlnet).
 
 ## Running the app
 1. Clone this repo
