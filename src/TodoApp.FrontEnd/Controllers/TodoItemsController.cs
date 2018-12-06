@@ -1,11 +1,11 @@
-﻿using Qml.Net;
+﻿using Humanizer;
+using Qml.Net;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TodoApp.Core.Interfaces;
-using TodoApp.FrontEnd.Model;
-using System;
-using Humanizer;
 using TodoApp.FrontEnd.Extensions;
+using TodoApp.FrontEnd.Model;
 
 namespace TodoApp.Controllers
 {
