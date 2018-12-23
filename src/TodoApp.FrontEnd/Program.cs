@@ -1,5 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.DependencyInjection;
+using Qml.Net;
+using System.Threading.Tasks;
 using TodoApp.Controllers;
+using TodoApp.FrontEnd;
+using TodoApp.Infrastructure.Database;
+using TodoApp.Infrastructure.Database.Seed;
 
 namespace TodoApp
 {
