@@ -28,7 +28,7 @@ namespace TodoApp
             var dbContext = serviceProvider.GetRequiredService<TodoAppDbContext>();
             await dbContext.EnsureSeedData();
 
-            QQuickStyle.SetStyle("Material");
+            // QQuickStyle.SetStyle("Material");
 
             using (var application = new QGuiApplication(args))
             {
