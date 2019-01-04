@@ -15,3 +15,9 @@ Responsible for maintaining and communicating with the Sqlite database for stora
 
 ## TodoApp.Core
 Containing all logic.
+
+# Related projects
+
+- [Qml.Net](https://github.com/qmlnet/qmlnet) - Qt/QML integration/support for .NET
+- [Qml.Net.Examples](https://github.com/qmlnet/qmlnet-examples) - Example projects for Qml.Net.
+- [Qml.Net.Chat](https://github.com/MaxMommersteeg/Qml.Net.Chat) - Simple client-server chat application written with SignalR Core and Qml.Net.
