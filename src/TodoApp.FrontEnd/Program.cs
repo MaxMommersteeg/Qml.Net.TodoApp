@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
 using Qml.Net;
+using Qml.Net.Runtimes;
 using System.Threading.Tasks;
 using TodoApp.Controllers;
 using TodoApp.FrontEnd;
@@ -28,6 +29,8 @@ namespace TodoApp
             var dbContext = serviceProvider.GetRequiredService<TodoAppDbContext>();
             await dbContext.EnsureSeedData();
 
+            RuntimeManager.DiscoverOrDownloadSuitableQtRuntime();
+            
             QQuickStyle.SetStyle("Material");
 
             using (var application = new QGuiApplication(args))
